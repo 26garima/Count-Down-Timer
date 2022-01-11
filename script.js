@@ -1,14 +1,23 @@
 console.log("Welcome to the CountDown");
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+if(dd<10)
+  dd='0'+dd;
+if(mm<10)
+  mm='0'+mm;
+var hour = today.getHours();
+var minutes = today.getMinutes();
+today = yyyy+'-'+mm+'-'+dd+'T'+hour+':'+minutes;
+document.getElementById("datetime").setAttribute("min", today);
 document.getElementById("start").onclick = function () {
   let inputInstance = document.getElementById("datetime").value;
   let inputMsec = new Date(inputInstance).getTime();
-  // console.log("input" + inputMsec);
   let intervalID = setInterval(function () {
     let currentInstance = new Date();
     let currentMsec = currentInstance.getTime();
-    // console.log("current" + currentMsec);
     let diff = inputMsec - currentMsec;
-    // console.log(diff);
     document.getElementById("days").innerText = Math.floor(
       diff / (1000 * 60 * 60 * 24)
     );
